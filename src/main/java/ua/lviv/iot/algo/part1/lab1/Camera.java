@@ -8,10 +8,8 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 public abstract class Camera {
-    private String model;
-    private String brand;
-    private String lens;
-    public abstract String takePhoto();
-
-
+    private String model; // Camera model
+    private String brand; // Camera brand
+    private String lens;  // Camera lens
+    public abstract String takePhoto();  // Take photo
 }

@@ -1,42 +1,67 @@
 package ua.lviv.iot.algo.part1.lab1;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
-public class CameraManager {
-    private final static List<Camera> cameras= new ArrayList<>();
-    public static void main(String[] args) {
+public final class CameraManager {
+    private static final List<Camera> CAMERA_LIST = new ArrayList<>();
+    public static void main(final String[] args) throws IOException {
+        final int photosCount = 10;
+        final int photosCount2 = 20;
+        final int filmISO = 124231;
+        final int filmISO2 = 232123;
+        final int speedDetection = 220;
+        final int price = 2000;
+        final int speedLimit21 = 240;
+        final int speedLimit22 = 2500;
 
-        addCamera(new DigitalCamera("XR", "Canon", "Nu", "1920x1080", 0,"Sap", 10));
-        addCamera(new DigitalCamera("XP", "Canon", "Nu", "1920x1080", 2,"SGA", 20));
-        addCamera(new FilmCamera("Carsa", "Sony", "Soft", "New",124231));
-        addCamera(new FilmCamera("7", "GoPro", "UltraHD", "sd",232123));
-        addCamera(new SpeedCamera("XS", "Axis", "Super",220,2000));
-        addCamera(new SpeedCamera("DH", "Dahua", "Super",240,2500));
-        addCamera(new HybridCamera("GV", "GHD", "Ultra", "4k","White"));
-        addCamera(new HybridCamera("GV", "GHD", "Ultra", "4k","Black"));
+        addCamera(new DigitalCamera("XR", "Canon", "Nu",
+                "1920", 0, "S", photosCount));
+        addCamera(new DigitalCamera("XP", "Canon", "Nu",
+                "1920", 2, "S", photosCount2));
+        addCamera(new FilmCamera("Carma", "Sony", "Soft",
+                "New", filmISO));
+        addCamera(new FilmCamera("7", "GoPro", "UltraHD",
+                "sd", filmISO2));
+        addCamera(new SpeedCamera("XS", "Axis", "Super",
+                speedDetection, price));
+        addCamera(new SpeedCamera("DH", "Petya", "Super",
+                speedLimit21, speedLimit22));
+        addCamera(new HybridCamera("GV", "GHD", "Ultra",
+                "4k", "White"));
+        addCamera(new HybridCamera("GV", "GHD", "Ultra",
+                "4k", "Black"));
 
-        for(var camera : cameras)
-        {
+        for (var camera : CAMERA_LIST) {
             System.out.println(camera);
             System.out.println(camera.takePhoto());
         }
 
-        findAllWithSameBrand("Canon");
-        findAllWithSameModel("XP");
+        findAllWithSameBrand("Canon").forEach(System.out::println);
+        findAllWithSameModel("XP").forEach(System.out::println);
     }
 
     public static void addCamera(final Camera camera) {
-        cameras.add(camera);
+        CAMERA_LIST.add(camera);
     }
-    public static void findAllWithSameModel(String model) {
-        System.out.println("\nCameras with the model:  " + model + ":");
-        cameras.stream().filter(v -> (Objects.equals(v.getModel(), model))).toList().forEach(System.out::println);
+    public static List<Camera> findAllWithSameModel(final String model) {
+        System.out.println("Cameras with the model:  " + model + ":");
+        return CAMERA_LIST.stream()
+                .filter(v -> Objects.equals(v.getModel(), model))
+                .collect(Collectors.toList());
     }
 
-    public static void findAllWithSameBrand(String brand) {
+    public static List<Camera> findAllWithSameBrand(final String brand) {
         System.out.println("Cameras with the brand " + brand + ":");
-        cameras.stream().filter(v -> (Objects.equals(v.getBrand(), brand))).toList().forEach(System.out::println);
+        return CAMERA_LIST.stream()
+                .filter(v -> Objects.equals(v.getBrand(), brand))
+                .collect(Collectors.toList());
+    }
+
+    public List<Camera> getAll() {
+        return CAMERA_LIST;
     }
 }
