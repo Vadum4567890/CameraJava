@@ -1,26 +1,48 @@
 package ua.lviv.iot.algo.part1.lab1;
-
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @ToString(callSuper = true)
 public class SpeedCamera extends Camera {
+    public  static final String HEADERS = ", maxSpeedDetection, price\n";
     private double maxSpeedDetection;
     private double price;
-
-    public SpeedCamera(String model, String brand, String lens, double maxSpeedDetection, double price) {
+    public SpeedCamera(final String model, final String brand,
+                       final String lens, final double maxSpeedDetection,
+                       final double price) {
         super(model, brand, lens);
         this.maxSpeedDetection = maxSpeedDetection;
         this.price = price;
     }
 
+    /**
+     *
+     * @return HEADERS
+     */
+    public String getHeaders() {
+        return super.getHeaders()
+                + HEADERS;
+    }
+
+    /**
+     *
+     * @return toCSV
+     */
+    public String toCSV() {
+        return super.toCSV()
+                + ", " + maxSpeedDetection
+                + ", " + price
+                + "\n";
+    }
+
     @Override
-    public String takePhoto() {
-        return "Max speed Detection: " + maxSpeedDetection + "\nFine Price: " + price + "\n";
+    public final String takePhoto() {
+        return "Max speed Detection: "
+                + this.maxSpeedDetection
+                + "\nFine Price: "
+                + this.price + "\n";
     }
 }

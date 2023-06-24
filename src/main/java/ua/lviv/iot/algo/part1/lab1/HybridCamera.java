@@ -1,24 +1,48 @@
 package ua.lviv.iot.algo.part1.lab1;
-
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @ToString(callSuper = true)
-public class HybridCamera extends Camera{
+public class HybridCamera extends Camera {
+    public  static final String HEADERS = ", resolution, color\n";
     private String resolution;
     private String color;
-    public HybridCamera(String model, String brand, String lens, String resolution, String color){
-        super(model,brand,lens);
+    public HybridCamera(final String model, final String brand,
+                        final String lens, final String resolution,
+                        final String color) {
+        super(model, brand, lens);
         this.resolution = resolution;
         this.color = color;
     }
+
+    /**
+     *
+     * @return HEADERS
+     */
+    public String getHeaders() {
+        return super.getHeaders()
+                + HEADERS;
+    }
+
+    /**
+     *
+     * @return toCSV
+     */
+    public String toCSV() {
+        return super.toCSV()
+                + ", " + resolution
+                + ", " + color
+                + "\n";
+    }
+
     @Override
-    public String takePhoto() {
-        return "Camera resolution: " + this.resolution + "\nCamera color: " + this.color + "\n";
+    public final String takePhoto() {
+        return "Camera resolution: "
+                + this.resolution
+                + "\nCamera color: "
+                + this.color + "\n";
     }
 }

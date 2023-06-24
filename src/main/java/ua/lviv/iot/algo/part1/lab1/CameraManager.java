@@ -40,6 +40,8 @@ public final class CameraManager {
             System.out.println(camera.takePhoto());
         }
 
+        CameraWriter cameraWriter = new CameraWriter("result.csv");
+        cameraWriter.writeCamerasToFile(CAMERA_LIST);
         findAllWithSameBrand("Canon").forEach(System.out::println);
         findAllWithSameModel("XP").forEach(System.out::println);
     }
