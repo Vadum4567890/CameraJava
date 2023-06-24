@@ -1,4 +1,6 @@
-package ua.lviv.iot.algo.part1.lab1;
+package ua.lviv.iot.algo.part1.lab1.Writer;
+
+import ua.lviv.iot.algo.part1.lab1.Model.*;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

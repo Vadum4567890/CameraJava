@@ -1,4 +1,7 @@
-package ua.lviv.iot.algo.part1.lab1;
+package ua.lviv.iot.algo.part1.lab1.Manager;
+
+import ua.lviv.iot.algo.part1.lab1.Model.*;
+import ua.lviv.iot.algo.part1.lab1.Writer.CameraWriter;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -3,6 +3,8 @@ package ua.lviv.iot.algo.part1.lab1;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ua.lviv.iot.algo.part1.lab1.Manager.CameraManager;
+import ua.lviv.iot.algo.part1.lab1.Model.*;
 
 import java.util.List;
 
